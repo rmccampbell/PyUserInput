@@ -1,3 +1,16 @@
+Deprecated
+===========
+
+Please use [Pynput](https://github.com/moses-palmer/pynput) instead.
+
+What's wrong with PyUserInput?
+
+* Nobody is actively working on it
+* Events on Windows depend on PyHook which is dead and not compatible with Python 3
+* Only works with QWERTY
+* Inconsistent API for non-printable characters
+* Probably more
+
 PyUserInput
 ===========
 
