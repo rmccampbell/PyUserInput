@@ -198,9 +198,9 @@ class PyMouseEvent(PyMouseEventMeta):
         with display_manager(self.display) as d:
             d.ungrab_pointer(X.CurrentTime)
             d.record_disable_context(self.ctx)
-        with display_manager(self.display2) as d:
-            d.ungrab_pointer(X.CurrentTime)
-            d.record_disable_context(self.ctx)
+
+        self.display2.ungrab_pointer(X.CurrentTime)
+        self.display2.record_disable_context(self.ctx)
 
     def handler(self, reply):
         data = reply.data
