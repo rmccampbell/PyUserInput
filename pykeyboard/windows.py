@@ -231,11 +231,11 @@ class PyKeyboardEvent(PyKeyboardEventMeta):
     def __init__(self, diagnostic=False):
         self.diagnostic = diagnostic
 
-        import pyHook
+        import pyWinhook
 
         PyKeyboardEventMeta.__init__(self)
-        self.hm = pyHook.HookManager()
-        self.hc = pyHook.HookConstants()
+        self.hm = pyWinhook.HookManager()
+        self.hc = pyWinhook.HookConstants()
 
         self.lock_meaning = None
 

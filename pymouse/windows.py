@@ -91,10 +91,10 @@ in Windows. This feature is only available on Mac.')
 
 class PyMouseEvent(PyMouseEventMeta):
     def __init__(self, capture=False, capture_move=False):
-        import pyHook
+        import pyWinhook
 
         PyMouseEventMeta.__init__(self, capture=capture, capture_move=capture_move)
-        self.hm = pyHook.HookManager()
+        self.hm = pyWinhook.HookManager()
 
     def run(self):
         self.hm.MouseAll = self._action
@@ -108,27 +108,27 @@ class PyMouseEvent(PyMouseEventMeta):
         self.state = False
 
     def _action(self, event):
-        import pyHook
+        import pyWinhook
         x, y = event.Position
 
-        if event.Message == pyHook.HookConstants.WM_MOUSEMOVE:
+        if event.Message == pyWinhook.HookConstants.WM_MOUSEMOVE:
             self.move(x,y)
             return not self.capture_move
 
-        elif event.Message == pyHook.HookConstants.WM_LBUTTONDOWN:
+        elif event.Message == pyWinhook.HookConstants.WM_LBUTTONDOWN:
             self.click(x, y, 1, True)
-        elif event.Message == pyHook.HookConstants.WM_LBUTTONUP:
+        elif event.Message == pyWinhook.HookConstants.WM_LBUTTONUP:
             self.click(x, y, 1, False)
-        elif event.Message == pyHook.HookConstants.WM_RBUTTONDOWN:
+        elif event.Message == pyWinhook.HookConstants.WM_RBUTTONDOWN:
             self.click(x, y, 2, True)
-        elif event.Message == pyHook.HookConstants.WM_RBUTTONUP:
+        elif event.Message == pyWinhook.HookConstants.WM_RBUTTONUP:
             self.click(x, y, 2, False)
-        elif event.Message == pyHook.HookConstants.WM_MBUTTONDOWN:
+        elif event.Message == pyWinhook.HookConstants.WM_MBUTTONDOWN:
             self.click(x, y, 3, True)
-        elif event.Message == pyHook.HookConstants.WM_MBUTTONUP:
+        elif event.Message == pyWinhook.HookConstants.WM_MBUTTONUP:
             self.click(x, y, 3, False)
 
-        elif event.Message == pyHook.HookConstants.WM_MOUSEWHEEL:
+        elif event.Message == pyWinhook.HookConstants.WM_MOUSEWHEEL:
             # event.Wheel is -1 when scrolling down, 1 when scrolling up
             self.scroll(x, y, event.Wheel, 0)
 
